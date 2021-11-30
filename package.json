@@ -1,0 +1,15 @@
+{
+  "name": "hygen-sample",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "new:fc": "hygen new fc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "hygen": "^6.1.0"
+  }
+}
