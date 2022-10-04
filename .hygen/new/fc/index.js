@@ -1,4 +1,6 @@
-
+//
+// npm run new:sfc -- --tag=p
+//
 module.exports = {
   prompt: ({ inquirer, args }) => {
     const questions = [
@@ -20,6 +22,11 @@ module.exports = {
       },
       {
         type: 'confirm',
+        name: 'have_children',
+        message: 'Do you include children?',
+      },
+      {
+        type: 'confirm',
         name: 'have_style',
         message: 'Is it have style?',
       },
@@ -37,13 +44,14 @@ module.exports = {
     return inquirer
       .prompt(questions)
       .then(answers => {
-        const { category, component_name, dir, have_props } = answers
+        const { category, component_name, dir, have_props, have_children } = answers
         const path = `${category}/${ dir ? `${dir}/` : `` }${component_name}`
         const abs_path = `src/components/${path}`
-        const type_annotate = have_props ? "FC<Props>" : 'FC'
+        const children = have_children ? 'FC' : 'VFC'
+        const type_annotate = have_props ? `${children}<Props>` : children
         const props = have_props ? '(props)' : '()'
         const tag = args.tag ? args.tag : 'div'
-        return { ...answers, path, abs_path, type_annotate, props, tag }
+        return { ...answers, path, abs_path, children, type_annotate, props, tag }
       })
   }
 }

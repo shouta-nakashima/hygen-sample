@@ -1,19 +1,18 @@
 ---
 to: <%= abs_path %>/<%= component_name %>.tsx
 ---
-import {FC} from "react";
+import { <%= children %> } from "react";
 <% if (have_style) { -%>
 import style from "./style.module.css"
 <% } -%>
 <% if (have_hooks) { -%>
 import { useDependencies } from './dependencies'
 <% } -%>
-<% if (have_props) { -%>
 
+<% if (have_props) { -%>
 export type Props = {
 };
 <% } -%>
-
 
 const <%= component_name %>: <%- type_annotate %> = <%= props %> => {
 <% if (have_hooks) { -%>
